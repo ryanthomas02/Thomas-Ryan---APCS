@@ -153,7 +153,7 @@ print("Guess the six letter word!")
 print()
 print_board()
 answer = random_word()
-guess = input("Type a guess (Make sure there are only 6 characters): ")
+guess = input("Type a guess (Make sure there are only 6 characters)("+ answer + "): ")
 if len(guess) > 6 or len(guess) < 6:
     print("Sorry, that guess wasn't valid,")
     guess = input("Type a guess (Make sure there are only 6 characters): ")
