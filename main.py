@@ -105,48 +105,17 @@ def new_board(correct_letters, turn, new_boards):
         print((" ").join(new_boards[i]))
 
 
-def guess_check(guess, answer):
-    correct_letters = []
-    correct_letters_length = []
-    new_boards = []
-    for i in range(6):
-        new_boards.append(["-", "-", "-", "-", "-", "-"])
-    turn = 0
-    while True:
-        if guess.lower() == answer:
-            return True
-        elif turn == 5:
-            return False
-        else:
-            correct_letters = []
-            correct_letters_length = []
-            for i in range(6):
-                if guess[i].lower() == answer[i]:
-                    correct_letters.append(guess[i])
-                    correct_letters_length.append(guess[i])
-                if guess[i].lower() != answer[i]:
-                    correct_letters.append("-")
-            turn += 1
-            print()
-            print("Turn: " + str(turn))
-            new_board(correct_letters, turn, new_boards)
-            print()
-            print("You got " + str(len(correct_letters_length)) +
-                  " letters right!")
-            print()
-            print("They were: ")
-            print(correct_letters)
-            guess = input(
-                "Type another guess (Make sure there are only 6 characters): ")
-            while True:
-                if len(guess) != 6:
-                    print("Sorry, that guess wasn't valid,")
-                    guess = input(
-                        "Type a guess (Make sure there are only 6 characters): "
-                    )
-                if len(guess) == 6:
-                    break
-
+correct_letters = []
+correct_letters_length = []
+new_boards = []
+for i in range(6):
+  new_boards.append(["-", "-", "-", "-", "-", "-"])
+turn = 0
+def guess_check(guess,answer,turn):
+  if guess == answer:
+    return True
+  elif turn >=5:
+    return False
 
 print("Welcome to Wordle!")
 print("Guess the six letter word!")
@@ -157,7 +126,38 @@ guess = input("Type a guess (Make sure there are only 6 characters)("+ answer + 
 if len(guess) > 6 or len(guess) < 6:
     print("Sorry, that guess wasn't valid,")
     guess = input("Type a guess (Make sure there are only 6 characters): ")
-win = guess_check(guess, answer)
+while True:
+  if guess_check(guess,answer,turn) == True:
+    win = True
+    break
+  elif guess_check(guess,answer,turn) == False:
+    win = False
+    break
+  else:
+    correct_letters = []
+    correct_letters_length = []
+    for i in range(6):
+      if guess[i].lower() == answer[i]:
+        correct_letters.append(guess[i])
+        correct_letters_length.append(guess[i])
+      if guess[i].lower() != answer[i]:
+        correct_letters.append("-")
+    turn += 1
+    print()
+    print("Turn: " + str(turn))
+    new_board(correct_letters, turn, new_boards)
+    print()
+    print("You got " + str(len(correct_letters_length)) +" letters right!")
+    print()
+    print("They were: ")
+    print(correct_letters)
+    guess = input("Type another guess (Make sure there are only 6 characters): ")
+    while True:
+      if len(guess) != 6:
+        print("Sorry, that guess wasn't valid,")
+        guess = input("Type a guess (Make sure there are only 6 characters): ")
+      if len(guess) == 6:
+        break
 if win == True:
     print()
     print("You win! You got the word: " + answer)
