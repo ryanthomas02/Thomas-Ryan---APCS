@@ -1,8 +1,5 @@
-##Wordle##
 import random
 
-
-## Printing out the board and choosing a random word from the word bank ##
 def print_board():
     board = []
     for i in range(6):
@@ -13,7 +10,7 @@ def print_board():
 
 def random_word():
     random_num = random.randint(0, 499)
-    word = word_bank(random_num)
+    word = "pickle"
     return word
 
 
@@ -122,7 +119,7 @@ print("Guess the six letter word!")
 print()
 print_board()
 answer = random_word()
-guess = input("Type a guess (Make sure there are only 6 characters)("+ answer + "): ")
+guess = input("Type a guess (Make sure there are only 6 characters): ")
 if len(guess) > 6 or len(guess) < 6:
     print("Sorry, that guess wasn't valid,")
     guess = input("Type a guess (Make sure there are only 6 characters): ")
